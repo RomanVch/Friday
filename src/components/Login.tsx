@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Prophail=()=> {
+export const Login=()=> {
   return (
       <div >
-        <p>Профайл</p>
+        <p>Логинизация</p>
       </div>
   );
 }

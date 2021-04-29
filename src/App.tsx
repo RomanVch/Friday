@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route,Redirect,Switch} from "react-router-dom";
 import './App.css';
+import Error404 from "./components/Error404";
+import {EnteringNewPassword} from "./components/EnteringNewPassword";
+import {Login} from "./components/Login";
+import {Registor} from "./components/Registor";
+import {RecoveryPassport} from "./components/RecoveryPassport";
+import {TestComponent} from "./components/TestComponent";
+import {Prophail} from "./components/Prophail";
 
 function App() {
   return (
+      <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route exact path="/" render={() => <EnteringNewPassword/>}/>
+        <Route path="/Login" render={() => <Login/>}/>
+        <Route path="/Prophail" render={() => <Prophail/>}/>
+        <Route path="/RecoveryPassport" render={() => <RecoveryPassport/>}/>
+        <Route path="/Registor" render={() => <Registor/>}/>
+        <Route path="/TestComponent" render={() => <TestComponent/>}/>
+        <Route path={'/404'} render={()=><Error404/>}/>
+        <Redirect path={ '*' } to={'/404'}/>
+      </Switch>
     </div>
+        </BrowserRouter>
   );
 }
 

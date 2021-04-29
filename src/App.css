@@ -1,38 +1,25 @@
-.App {
-  text-align: center;
+.fof__background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(https://9gag.com/s/fab0aa49/daedfa6a3e648ae27de3c86a3c4e5a39e698bcf9/static/dist/web/img/404/bg.gif) 50% no-repeat;
+  background-size: cover;
+  z-index: -1;
+  opacity: .5;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.fof__fof{
+  font-size: 144px;
+  font-weight: 100;
+  margin-bottom: 16px;
   color: white;
+  margin-left: 35vw;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fof__not{
+  font-weight: 700;
+  font-size: 45px;
+  margin-bottom: 32px;
+  color: white;
+  margin-left: 30vw;
 }

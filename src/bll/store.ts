@@ -1,10 +1,9 @@
 import {combineReducers, createStore} from "redux";
-import {userReducer} from "./user-reducer";
-import {messageReducer} from "./chat-reducer";
+import {authReducer} from "./auth-reducer";
+
 
 const rootReducer = combineReducers(
-    {user: userReducer,
-    chat:messageReducer
+    {authReducer: authReducer,
     }
 )
 
