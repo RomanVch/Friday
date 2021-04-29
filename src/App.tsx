@@ -21,7 +21,6 @@ function App() {
         <Route path="/Registor" render={() => <Registor/>}/>
         <Route path="/TestComponent" render={() => <TestComponent/>}/>
         <Route path={'/404'} render={()=><Error404/>}/>
-        <Redirect path={ '*' } to={'/404'}/>
       </Switch>
     </div>
         </BrowserRouter>
