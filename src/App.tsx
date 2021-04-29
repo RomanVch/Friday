@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route,Redirect,Switch} from "react-router-dom";
+import {BrowserRouter, Route, Redirect, Switch, HashRouter} from "react-router-dom";
 import './App.css';
 import Error404 from "./components/Error404";
 import {EnteringNewPassword} from "./components/EnteringNewPassword";
@@ -11,8 +11,9 @@ import {Prophail} from "./components/Prophail";
 
 function App() {
   return (
-      <BrowserRouter>
+      <HashRouter>
     <div className="App">
+
       <Switch>
         <Route exact path="/" render={() => <EnteringNewPassword/>}/>
         <Route path="/Login" render={() => <Login/>}/>
@@ -23,7 +24,7 @@ function App() {
         <Route path={'/404'} render={()=><Error404/>}/>
       </Switch>
     </div>
-        </BrowserRouter>
+        </HashRouter>
   );
 }
 
