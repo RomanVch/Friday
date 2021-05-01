@@ -44,7 +44,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
     return (
         <div className={"form__group"}>
             <input
-                type={"text"}
+                type={type?type:"text"}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
