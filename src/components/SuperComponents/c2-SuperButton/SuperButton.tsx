@@ -7,6 +7,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: any
 names?:string
+    functionButton?:any
 }
 
 const SuperButton: React.FC<SuperButtonPropsType> = (
@@ -19,6 +20,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
 
     return (
             <button className={finalClassName}
+                    onClick={restProps.functionButton}
                 {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
             >
                 {restProps.names}
