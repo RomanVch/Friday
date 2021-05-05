@@ -5,11 +5,22 @@ const instance = axios.create({
 })
 
 export const cardsAPI = {
-    registration(email: string,password:string) {
+    registration(email: string, password: string) {
         const promise = instance.post('auth/register', {
-            email:email,
+            email: email,
             password: password
         });
         return promise;
     },
+    login(
+        email: string,
+        password: string,
+        rememberMe: boolean) {
+        const promise = instance.post('auth/login', {
+            email: email,
+            password: password,
+            rememberMe: rememberMe
+        });
+        return promise;
+    }
 }

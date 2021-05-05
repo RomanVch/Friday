@@ -1,12 +1,14 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import {EnteringNewPassword} from "./EnteringNewPassword";
-import {Login} from "./Login";
+
 import {Prophail} from "./proPhail";
 import {RecoveryPassport} from "./RecoveryPassport";
 import {TestComponent} from "./TestComponent";
 import Error404 from "./Error404";
 import {Registor} from "./Registor/Registor";
+import {RegistorBybl} from "./Registor/RegistorBybl";
+import {Login} from "./Login";
 
 export const Roters=()=> {
     return (
@@ -15,7 +17,7 @@ export const Roters=()=> {
             <Route path="/Login" render={() => <Login/>}/>
             <Route path="/Prophail" render={() => <Prophail/>}/>
             <Route path="/RecoveryPassport" render={() => <RecoveryPassport/>}/>
-            <Route path="/Registor" render={() => <Registor/>}/>
+            <Route path="/Registor" render={() => <RegistorBybl/>}/>
             <Route path="/TestComponent" render={() => <TestComponent/>}/>
             <Route render={() => <Error404/>}/>
         </Switch>
