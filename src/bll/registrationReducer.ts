@@ -50,7 +50,9 @@ export const registrationThunk = (email: string, password: string) => {
             dispatch(CleanErrorLoadingRegistorAC())
         })
             .catch(err => {
-                dispatch(errorLoadingRegistorAC(err.message));
+                debugger
+                dispatch(errorLoadingRegistorAC(err.response.data.error));
+                dispatch(LoadingRegistorAC());
             });
     };
 };

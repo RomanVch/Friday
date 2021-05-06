@@ -1,10 +1,12 @@
 import {Button, Checkbox, Dialog, makeStyles, Paper, TextField} from "@material-ui/core";
 import {blue} from "@material-ui/core/colors";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import * as yup from 'yup';
 import {registrationThunk} from "../../bll/registrationReducer";
 import './../../App.css';
+import {Alert} from "@material-ui/lab";
+import {AppStateType} from "../../bll/store";
 
 const useStyles = makeStyles({
     avatar: {
@@ -30,16 +32,14 @@ const styleFormButton = {
     margin: "auto",
     marginTop: 10,
     display:"flex",
-}
-const headerRegisterForm={
-    textAlign:"center"
+    marginBottom: 50
 }
 const styleFormBlock = {margin: "auto", width: 300, minHeight: 310,marginTop: "15%"}
 
 export function RegistorBybl() {
     const classes = useStyles();
     const dispatch=useDispatch()
-
+const err= useSelector<AppStateType,string>(state=>state.Register.errorMessage)
 
 
 
@@ -97,6 +97,7 @@ export function RegistorBybl() {
                         Регистриация
                     </Button>
                 </form>
+                {err&&<Alert severity="error">{err}</Alert>}
             </Paper>
 
     );

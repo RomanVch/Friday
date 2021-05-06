@@ -2,10 +2,11 @@ import {cardsAPI} from "../api/api";
 
 const inithinalState = {
     loadingAuth: false,
-    errorMessageAuth: ''
+    errorMessageAuth: '',
+    auth:false
 }
 
-type AllActionType=LoadingAuthACType|ErrorLoadingAuthACType|CleanErrorLoadingAuthACType
+type AllActionType=LoadingAuthACType|ErrorLoadingAuthACType|CleanErrorLoadingAuthACType|NotAuthMeACType|AuthMeACType
 
 export const AuthReducer = (state: any = inithinalState, action: AllActionType)=> {
     switch (action.type) {
@@ -17,6 +18,12 @@ export const AuthReducer = (state: any = inithinalState, action: AllActionType)=
         }
         case 'CLEAN-ERROR-AUTH-REGISTRATION': {
             return {...state, errorMessageAuth:''}
+        }
+        case 'AUTH-ME': {
+            return {...state, auth:true}
+        }
+        case 'NOT-AUTH-ME': {
+            return {...state, auth:false}
         }
         default:
             return state;
@@ -42,18 +49,41 @@ export const CleanErrorLoadingAuthAC = (): CleanErrorLoadingAuthACType => {
 export type CleanErrorLoadingAuthACType = {
     type: 'CLEAN-ERROR-AUTH-REGISTRATION'
 }
+export const NotAuthMeAC = (): NotAuthMeACType => {
+    return {type: 'NOT-AUTH-ME'}
+}
+export type NotAuthMeACType = {
+    type: 'NOT-AUTH-ME'
+}
+export const AuthMeAC = (): AuthMeACType => {
+    return {type: 'AUTH-ME'}
+}
+export type AuthMeACType = {
+    type: 'AUTH-ME'
+}
 export const authThunk = (email: string, password: string, rememberMe:boolean) => {
     return (dispatch: any) => {
         dispatch(LoadingAuthAC());
         cardsAPI.login(email, password, rememberMe).then(res => {
             dispatch(LoadingAuthAC());
             dispatch(CleanErrorLoadingAuthAC())
+            dispatch(AuthMeAC())
+
         })
             .catch(err => {
+                debugger
                 dispatch(LoadingAuthAC());
-                dispatch(errorLoadingAuthAC(err.message));
+                dispatch(errorLoadingAuthAC(err.response.data.error));
+                dispatch(NotAuthMeAC())
             });
     };
 };
 
 
+export const authMeThunk = () => {
+    return (dispatch: any) => {
+        cardsAPI.authMePost().then( res=>
+            dispatch(AuthMeAC())
+        ).catch(res=>dispatch(NotAuthMeAC()))
+    };
+};

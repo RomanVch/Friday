@@ -2,6 +2,7 @@ import axios, {AxiosResponse} from 'axios'
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
+    withCredentials:true
 })
 
 export const cardsAPI = {
@@ -23,15 +24,9 @@ export const cardsAPI = {
         });
         return promise;
     },
-    recoveryPass(email: string) {
-        const promise = instance.post<ResponseType>('auth/set-new-password', {
-            email: email,
-            message:
-                `<div style="background-color: lime; padding: 15px"> +
-                password recovery link:
-                <a href='http://localhost:3000/#/set-new-password/$token$'>link</a></div>`
-        });
-        return promise;
+    authMePost(){
+        return instance.post('auth/me')
+
     }
 
 }

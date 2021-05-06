@@ -1,10 +1,13 @@
 import {Button, Checkbox, Dialog, makeStyles, Paper, TextField} from "@material-ui/core";
 import {blue} from "@material-ui/core/colors";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import * as yup from 'yup';
 import './../App.css';
 import {authThunk} from "../bll/auth-reducer";
+import {Alert} from "@material-ui/lab";
+import {AppStateType} from "../bll/store";
+import {Redirect} from "react-router-dom";
 
 const useStyles = makeStyles({
     avatar: {
@@ -29,7 +32,8 @@ const styleFormButton = {
     width: 237.5,
     margin: "auto",
     marginTop: 10,
-    display:"flex"
+    display:"flex",
+    marginBottom: 20
 }
 const headerRegisterForm={
     textAlign:"center"
@@ -42,8 +46,8 @@ const styleFormBlock = {margin: "auto", width: 300, minHeight: 310,marginTop: "1
 export function Login() {
     const classes = useStyles();
     const dispatch=useDispatch()
-
-
+    const err= useSelector<AppStateType,string>(state=>state.authReducer.errorMessageAuth)
+    const auth= useSelector<AppStateType,boolean>(state=>state.authReducer.auth)
 
 
     const validationSchema = yup.object({
@@ -75,6 +79,7 @@ export function Login() {
     return (
 
         <Paper style={styleFormBlock} elevation={5}>
+            {auth&&<Redirect to="/Prophail" />}
             <form className={"form"} onSubmit={formik.handleSubmit}>
                 <h2 className={"header_registration"}>Ввойти</h2>
                 <TextField
@@ -107,6 +112,8 @@ export function Login() {
                     Регистриация
                 </Button>
             </form>
+            {err&&<Alert severity="error">{err}</Alert>}
+
         </Paper>
 
     );
