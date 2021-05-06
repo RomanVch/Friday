@@ -6,7 +6,6 @@ import {Prophail} from "./proPhail";
 import {RecoveryPassport} from "./RecoveryPassport";
 import {TestComponent} from "./TestComponent";
 import Error404 from "./Error404";
-import {Registor} from "./Registor/Registor";
 import {RegistorBybl} from "./Registor/RegistorBybl";
 import {Login} from "./Login";
 

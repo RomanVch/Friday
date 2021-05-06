@@ -2,6 +2,7 @@ import axios, {AxiosResponse} from 'axios'
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
+    withCredentials:true
 })
 
 export const cardsAPI = {
@@ -22,5 +23,8 @@ export const cardsAPI = {
             rememberMe: rememberMe
         });
         return promise;
+    },
+    authMePost(){
+        return instance.post('auth/me')
     }
 }

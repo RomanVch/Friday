@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 export const Prophail=()=> {
+
   return (
       <div >
-        <p>Профайл</p>
+          <p>Профайл</p>
+
       </div>
   );
 }
