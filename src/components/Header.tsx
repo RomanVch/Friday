@@ -9,8 +9,9 @@ export const Header=()=> {
                 <NavLink to="/">Войти</NavLink>
                 <NavLink to="/Login">Логин</NavLink>
                 <NavLink to="/Prophail">Профайл</NavLink>
-                <NavLink to="/RecoveryPassport">Паспорт</NavLink>
-                <NavLink to="/Registor">регистрация</NavLink>
+                <NavLink to="/RecoveryPassport">Восстановление</NavLink>
+                <NavLink to="/set-new-password">Новый пароль</NavLink>
+                <NavLink to="/Registor">Регистрация</NavLink>
                 <NavLink to="/TestComponent">тест</NavLink>
             </div>
         </header>
