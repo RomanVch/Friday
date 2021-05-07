@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import SuperInputText from '../SuperComponents/c1-SuperInputText/SuperInputText';
 import SuperButton from '../SuperComponents/c2-SuperButton/SuperButton';
-import {registrationThunk} from "../../bll/registrationReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {recoveryPasTC, RecoveryPasType} from "../../bll/recovery-reducer";
-import SuperCheckbox from "../SuperComponents/c3-SuperCheckbox/SuperCheckbox";
+import {recoveryPasTC} from "../../bll/recovery-reducer";
 import { AppStateType } from '../../bll/store';
 
 export const RecoveryPassport = () => {

@@ -1,3 +1,4 @@
+import { Redirect } from "react-router-dom";
 import {cardsAPI} from "../api/api";
 
 const inithinalState = {
@@ -61,6 +62,8 @@ export const AuthMeAC = (): AuthMeACType => {
 export type AuthMeACType = {
     type: 'AUTH-ME'
 }
+
+
 export const authThunk = (email: string, password: string, rememberMe:boolean) => {
     return (dispatch: any) => {
         dispatch(LoadingAuthAC());
@@ -85,5 +88,13 @@ export const authMeThunk = () => {
         cardsAPI.authMePost().then( res=>
             dispatch(AuthMeAC())
         ).catch(res=>dispatch(NotAuthMeAC()))
+    };
+};
+
+export const logOutThunk = () => {
+    return (dispatch: any) => {
+        cardsAPI.logOut().then( res=>
+            dispatch(NotAuthMeAC())
+    )
     };
 };
