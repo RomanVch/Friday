@@ -26,5 +26,7 @@ export const cardsAPI = {
     },
     authMePost(){
         return instance.post('auth/me')
+
     }
+
 }
