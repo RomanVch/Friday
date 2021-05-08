@@ -1,9 +1,11 @@
 import {Button, Paper, TextField} from "@material-ui/core";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import * as yup from 'yup';
 import './../../App.css';
-import {recoveryPasTC} from "../../bll/recovery-reducer";
+import {recoveryPasTC, RequestErrorType, StatusRequestType} from "../../bll/recovery-reducer";
+import {AppStateType} from "../../bll/store";
+import {Alert} from "@material-ui/lab";
 
 const styleFormInput = {
     marginBottom: 20,
@@ -23,6 +25,9 @@ const styleFormBlock = {margin: "auto", width: 300, minHeight: 220, marginTop: "
 
 export function RecoveryPassBybl() {
     const dispatch = useDispatch()
+    const status = useSelector<AppStateType, StatusRequestType>(state => state.RecoveryPass.statusRequest)
+    // const err= useSelector<AppStateType,RequestErrorType>(state=>state.RecoveryPass.error)
+
 
     const validationSchema = yup.object({
         email: yup
@@ -59,6 +64,13 @@ export function RecoveryPassBybl() {
                     Отправить
                 </Button>
             </form>
+            {/*{err&&<Alert severity="error">{err}</Alert>}*/}
+            {status === 'succeeded'
+                ? <Alert severity="success">Инструкции по восттановлению отправлены на почту</Alert>
+                : status === 'failed'
+                    ? <Alert severity="error">Пользователь с введенным email аддресом не зарегестрирован</Alert>
+                    : null
+            }
         </Paper>
 
     );
