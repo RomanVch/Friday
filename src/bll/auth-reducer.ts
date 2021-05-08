@@ -3,10 +3,27 @@ import {cardsAPI} from "../api/api";
 const inithinalState = {
     loadingAuth: false,
     errorMessageAuth: '',
-    auth:false
+    auth:false,
+    user:{
+        _id:'',
+        email: '',
+        name: '',
+        avatar: '',
+        publicCardPacksCount:0,
+        created:'',
+        updated: '',
+        isAdmin:false,
+        verified:false,
+        rememberMe:false,
+        error:'',
+    }
 }
 
-type AllActionType=LoadingAuthACType|ErrorLoadingAuthACType|CleanErrorLoadingAuthACType|NotAuthMeACType|AuthMeACType
+type AllActionType=LoadingAuthACType
+    |ErrorLoadingAuthACType
+    |CleanErrorLoadingAuthACType
+    |NotAuthMeACType
+    |AuthMeACType
 
 export const AuthReducer = (state: any = inithinalState, action: AllActionType)=> {
     switch (action.type) {
@@ -20,15 +37,42 @@ export const AuthReducer = (state: any = inithinalState, action: AllActionType)=
             return {...state, errorMessageAuth:''}
         }
         case 'AUTH-ME': {
-            return {...state, auth:true}
+            return {...state, auth:true, user:action.user}
         }
         case 'NOT-AUTH-ME': {
-            return {...state, auth:false}
+            return {...state, auth:false,
+                user:{
+                    _id:'',
+                    email: '',
+                    name: '',
+                    avatar: '',
+                    publicCardPacksCount:0,
+                    created:'',
+                    updated: '',
+                    isAdmin:false,
+                    verified:false,
+                    rememberMe:false
+                }}
         }
         default:
             return state;
     }
 }
+
+export type usersType={
+        _id:string,
+        email: string,
+        name: string,
+        avatar?: string,
+        publicCardPacksCount:number,
+        created:string,
+        updated: string,
+        isAdmin:boolean,
+        verified:boolean,
+        rememberMe:boolean,
+        error?:string,
+}
+
 
 export const LoadingAuthAC = (): LoadingAuthACType => {
     return {type: 'AUTH-REGISTRATION'}
@@ -55,20 +99,21 @@ export const NotAuthMeAC = (): NotAuthMeACType => {
 export type NotAuthMeACType = {
     type: 'NOT-AUTH-ME'
 }
-export const AuthMeAC = (): AuthMeACType => {
-    return {type: 'AUTH-ME'}
+export const AuthMeAC = (user:usersType): AuthMeACType => {
+    return {type: 'AUTH-ME',user}
 }
 export type AuthMeACType = {
-    type: 'AUTH-ME'
+    type: 'AUTH-ME',
+    user:usersType
 }
 export const authThunk = (email: string, password: string, rememberMe:boolean) => {
     return (dispatch: any) => {
         dispatch(LoadingAuthAC());
         cardsAPI.login(email, password, rememberMe).then(res => {
+            console.log(res)
             dispatch(LoadingAuthAC());
             dispatch(CleanErrorLoadingAuthAC())
-            dispatch(AuthMeAC())
-
+            dispatch(AuthMeAC(res.data))
         })
             .catch(err => {
                 debugger
@@ -83,7 +128,7 @@ export const authThunk = (email: string, password: string, rememberMe:boolean) =
 export const authMeThunk = () => {
     return (dispatch: any) => {
         cardsAPI.authMePost().then( res=>
-            dispatch(AuthMeAC())
+            dispatch(AuthMeAC(res.data))
         ).catch(res=>dispatch(NotAuthMeAC()))
     };
 };
