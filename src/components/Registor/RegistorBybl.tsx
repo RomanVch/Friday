@@ -45,21 +45,30 @@ const err= useSelector<AppStateType,string>(state=>state.Register.errorMessage)
 
     const validationSchema = yup.object({
         login: yup
+
             .string()
+
             .min(4,'Минимальная длинна логина 4 символа')
             .email('Это не почта')
             .required('Обязательное поле'),
+
         password: yup
             .string()
+            .oneOf([yup.ref ('password2'), null], "Не совпадают пароли")
             .min(8,'Минимальная длинна пароля 8 символа')
             .required('Обязательное поле'),
-
+        password2: yup
+            .string()
+            .oneOf([yup.ref ('password2'), null], "Не совпадают пароли")
+            .min(8,'Минимальная длинна пароля 8 символа')
+            .required('Обязательное поле'),
     });
 
     const formik = useFormik({
         initialValues: {
             login: "",
-            password: ""
+            password: "",
+            password2:""
         },
         validationSchema: validationSchema,
         onSubmit: (values, {resetForm}) => {
@@ -92,7 +101,17 @@ const err= useSelector<AppStateType,string>(state=>state.Register.errorMessage)
                         style={styleFormInput}
                         type={"password"}
                     />
+                    <TextField
+                        fullWidth
+                        id="password2"
+                        label="Пароль"
+                        {...formik.getFieldProps("password2")}
+                        error={formik.touched.password2 && Boolean(formik.errors.password2)}
+                        helperText={formik.touched.password2 && formik.errors.password2}
+                        style={styleFormInput}
+                        type={"password"}
 
+                    />
                     <Button style={styleFormButton} color="primary" variant="contained" fullWidth type="submit">
                         Регистриация
                     </Button>
