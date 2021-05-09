@@ -34,13 +34,13 @@ type AllActionType=CleanErrorLoadingPacsACType|LoadingPacsACType|GetPacsACType
 export const PacsReducer = (state: any = {}, action: AllActionType) => {
     switch (action.type) {
         case 'LOADING-GET-PACS': {
-            return {...state, loading: state.loading}
+            return {...state, loading: action.loading}
         }
         case 'GET-PACS': {
             return {...state, packs: action.payload}
         }
         case 'CLEAN-ERROR-LOADING-GET-PACS': {
-            return {...state, loading: state.loading}
+            return {...state, loading: action.loading}
         }
         default:
             return state;
@@ -83,6 +83,7 @@ export type CleanErrorLoadingPacsACType = {
 
 export const getPacksThunk = (page: number = 1, pageCount: number = 4) => {
     return (dispatch: any) => {
+
         dispatch(LoadingPacsAC())
         cardsAPI.getPack().then(res => {
             dispatch(GetPacsAC(res.data.cardPacks))
@@ -118,6 +119,26 @@ export const updatePacksThunk = (name:string="newPacksUpdate",_id:string ) => {
     return (dispatch: any) => {
         dispatch(LoadingPacsAC())
         cardsAPI.updatePack(name,_id).then(res => {
+            dispatch(CleanErrorLoadingPacsAC())
+            cardsAPI.getPack().then(res => {
+                dispatch(GetPacsAC(res.data.cardPacks))
+                dispatch(CleanErrorLoadingPacsAC())
+            })
+                .catch(err => {
+                    dispatch(CleanErrorLoadingPacsAC())
+                    console.log(err)
+                })
+        })
+            .catch(err => {
+                dispatch(CleanErrorLoadingPacsAC())
+                console.log(err)
+            });
+    };
+};
+export const deletePacksThunk = (_id:string ) => {
+    return (dispatch: any) => {
+        dispatch(LoadingPacsAC())
+        cardsAPI.deletePack(_id).then(res => {
             dispatch(CleanErrorLoadingPacsAC())
             cardsAPI.getPack().then(res => {
                 dispatch(GetPacsAC(res.data.cardPacks))

@@ -1,21 +1,30 @@
 import React, {useEffect, useState} from "react";
 import './pacs.css';
 import {useDispatch, useSelector} from "react-redux";
-import {getPacksThunk, newPacksThunk, packType, pacsType, updatePacksThunk} from "../../bll/pacs-reducer";
+import {
+    deletePacksThunk,
+    getPacksThunk,
+    newPacksThunk,
+    packType,
+    pacsType,
+    updatePacksThunk
+} from "../../bll/pacs-reducer";
 import {AppStateType} from "../../bll/store";
 import {usersType} from "../../bll/auth-reducer";
 import {NavLink} from "react-router-dom";
-import {Button} from "@material-ui/core";
+import {Button, LinearProgress} from "@material-ui/core";
 
 export const Pacs = () => {
     const dispatch = useDispatch()
     const packs = useSelector<AppStateType, pacsType>(st => st.Packs.packs)
+    const loading= useSelector<AppStateType, boolean>(st => st.Packs.loading)
     useEffect(() => {
         dispatch(getPacksThunk())
     }, [])
-    console.log(packs)
+    console.log(loading)
     return (
         <div>
+            {loading&&<LinearProgress />}
             <div className={"pacs__head_wrapper"}>
                 <ul className={"pacs__head"}>
                     <li>name</li>
@@ -42,7 +51,7 @@ export const Pacs = () => {
 
 
                             <div className={"packs__button_table"}>
-                                <Button variant="contained">add</Button>
+                                <Button onClick={()=>dispatch(deletePacksThunk(pack._id))} variant="contained">delete</Button>
                                 <Button onClick={()=>dispatch(updatePacksThunk("newUpdatePacks",pack._id))} variant="contained">update</Button>
                                 <Button color="primary" variant="contained"><NavLink to="/cards">cards</NavLink></Button>
 
