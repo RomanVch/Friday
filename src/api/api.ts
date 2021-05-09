@@ -34,13 +34,19 @@ export const cardsAPI = {
     getPack(page: number = 1, pageCont: number = 4) {
         return instance.get(`cards/pack?page=${page}&pageCount=${pageCont}`)
     },
-    newPack(name:string,path:string){
-        return instance.post('cards/pack',{cardsPack: {name,path}})
+    newPack(name: string, path: string) {
+        return instance.post('cards/pack', {cardsPack: {name, path}})
     },
-    updatePack(name:string,_id:string){
-        return instance.put('cards/pack',{cardsPack: {
-                name,_id
+    updatePack(name: string, _id: string) {
+        return instance.put('cards/pack', {
+            cardsPack: {
+                name, _id
 
-            }})
+            }
+        })
+    },
+    deletePack(_id:string){
+       return  instance.delete(`cards/pack/?id=${_id}`)
     }
+
 }
