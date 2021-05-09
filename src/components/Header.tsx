@@ -13,6 +13,7 @@ export const Header=()=> {
                 <NavLink to="/set-new-password">Новый пароль</NavLink>
                 <NavLink to="/Registor">Регистрация</NavLink>
                 <NavLink to="/TestComponent">тест</NavLink>
+                <NavLink to="/Pacs">паки</NavLink>
             </div>
         </header>
     );

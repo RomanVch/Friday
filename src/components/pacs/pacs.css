@@ -1,0 +1,48 @@
+.pacs__head{
+    display: flex;
+
+}
+.pacs__head li{
+    list-style:none;
+    width: 20%;
+    text-align: left;
+}
+.pacs__head_wrapper{
+    border: 1px solid black
+}
+.pacs__table_wrapper{
+    display: flex;
+border-bottom:1px solid black;
+border-left:1px solid black;
+border-right:1px solid black
+}
+
+.pacs__table{
+    width: 77%;
+    display: flex;
+}
+
+.packs__button_table button{
+ margin-right: 1vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.pacs__table_name{
+    margin-left: 2%;
+    width:19%
+}
+.pacs__table_cardCount{
+    margin-left: 2%;
+    width:15%
+}
+.pacs__table_update{
+    margin-left: 2%;
+    width:18%
+}
+.pacs__type{
+    margin-left: 2%;
+    width:17%
+}
+
