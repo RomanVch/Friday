@@ -10,6 +10,7 @@ import {RegistorBybl} from "./Registor/RegistorBybl";
 import {Login} from "./Login";
 import {SetPass} from "./SetPass";
 import {RecoveryPassBybl} from "./RecoveryPass/RecoveryPassBybl";
+import {Pacs} from "./pacs/pacs";
 
 export const Roters=()=> {
     return (
@@ -21,7 +22,10 @@ export const Roters=()=> {
             <Route path="/Registor" render={() => <RegistorBybl/>}/>
             <Route path="/set-new-password" render={() => <SetPass/>}/>
             <Route path="/TestComponent" render={() => <TestComponent/>}/>
+            <Route path="/Pacs" render={() => <Pacs/>}/>
             <Route render={() => <Error404/>}/>
+
+
         </Switch>
     );
 }

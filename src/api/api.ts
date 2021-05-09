@@ -2,7 +2,7 @@ import axios, {AxiosResponse} from 'axios'
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
-    withCredentials:true
+    withCredentials: true
 })
 
 export const cardsAPI = {
@@ -24,12 +24,23 @@ export const cardsAPI = {
         });
         return promise;
     },
-    authMePost(){
+    authMePost() {
         return instance.post('auth/me')
 
     },
-    logOut(){
+    logOut() {
         return instance.delete('auth/me')
-    }
+    },
+    getPack(page: number = 1, pageCont: number = 4) {
+        return instance.get(`cards/pack?page=${page}&pageCount=${pageCont}`)
+    },
+    newPack(name:string,path:string){
+        return instance.post('cards/pack',{cardsPack: {name,path}})
+    },
+    updatePack(name:string,_id:string){
+        return instance.put('cards/pack',{cardsPack: {
+                name,_id
 
+            }})
+    }
 }

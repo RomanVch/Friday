@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {logOutThunk} from "../bll/auth-reducer";
 import {AppStateType} from "../bll/store";
 import {usersType} from "../bll/auth-reducer";
+import {Redirect} from "react-router-dom";
 
 export const Prophail = () => {
     const dispatch = useDispatch()
@@ -12,7 +13,7 @@ export const Prophail = () => {
     return (
 
         <div>
-            {/*{!isAuth && <Redirect to="/Login" />}*/}
+            {!isAuth && <Redirect to="/Login" />}
             <h1>Hello {user.name}</h1>
             <SuperButton onClick={() => dispatch(logOutThunk())} names={"LogOut"}/>
 
