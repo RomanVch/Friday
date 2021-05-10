@@ -3,16 +3,20 @@ import {Route, Switch} from "react-router-dom";
 import {EnteringNewPassword} from "./EnteringNewPassword";
 
 import {Prophail} from "./proPhail";
-import {RecoveryPassport} from "./RecoveryPass/RecoveryPassport";
 import {TestComponent} from "./TestComponent";
 import Error404 from "./Error404";
 import {RegistorBybl} from "./Registor/RegistorBybl";
 import {Login} from "./Login";
 import {SetPass} from "./SetPass";
 import {RecoveryPassBybl} from "./RecoveryPass/RecoveryPassBybl";
-import {Pacs} from "./pacs/pacs";
+import {Packs} from "./packs/packs";
+import {Cards} from "./cards/cards";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../bll/store";
 
 export const Roters=()=> {
+    const _id= useSelector<AppStateType,string>(st=>st.Cards._idPacs)
+    console.log(/Cards/+_id)
     return (
         <Switch>
             <Route exact path="/" render={() => <EnteringNewPassword/>}/>
@@ -22,7 +26,8 @@ export const Roters=()=> {
             <Route path="/Registor" render={() => <RegistorBybl/>}/>
             <Route path="/set-new-password" render={() => <SetPass/>}/>
             <Route path="/TestComponent" render={() => <TestComponent/>}/>
-            <Route path="/Pacs" render={() => <Pacs/>}/>
+            <Route path="/Pacs" render={() => <Packs/>}/>
+            <Route path="/Cards/" render={() => <Cards/>}/>
             <Route render={() => <Error404/>}/>
 
 

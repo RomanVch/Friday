@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import {AuthReducer} from "./auth-reducer";
 import {recoveryPasReducer} from "./recovery-reducer";
 import {PacsReducer} from "./pacs-reducer";
+import {CardsReducer} from "./cards-reducer";
 
 
 const rootReducer = combineReducers(
@@ -12,6 +13,7 @@ const rootReducer = combineReducers(
         Register: RegistorReducer,
         RecoveryPass: recoveryPasReducer,
         Packs:PacsReducer,
+        Cards:CardsReducer
     }
 )
 

@@ -1,0 +1,78 @@
+.cards__head {
+    display: flex;
+}
+
+.cards__head li {
+    width: 17%;
+    list-style: none;
+    text-align: left;
+}
+
+.cards__head_wrapper {
+    border: 1px solid black
+}
+
+.pacs__card_question {
+    width: 16.6%;
+    margin-left: 3%;
+}
+
+.pacs__card_answer{
+    width: 16.6%;
+}
+.pacs__card_grade{
+    width: 16.1%;
+}
+.pacs__card_update{
+    width: 16.6%;
+}
+.pacs__card_type{
+    width: 12.3%;
+}
+.pacs__card_buttons{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/**/
+
+
+.pacs__table_wrapper {
+    display: flex;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black
+}
+
+.pacs__table {
+    width: 77%;
+    display: flex;
+}
+
+.packs__button_table button {
+    margin-right: 1vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.pacs__table_name {
+    margin-left: 2%;
+    width: 19%
+}
+
+.pacs__table_cardCount {
+    margin-left: 2%;
+    width: 15%
+}
+
+.pacs__table_update {
+    margin-left: 2%;
+    width: 18%
+}
+
+.pacs__type {
+    margin-left: 2%;
+    width: 17%
+}
+
