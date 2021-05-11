@@ -73,7 +73,7 @@ const err= useSelector<AppStateType,string>(state=>state.Register.errorMessage)
         validationSchema: validationSchema,
         onSubmit: (values, {resetForm}) => {
             dispatch(registrationThunk(values.login,values.password))
-            console.log(values)
+
             resetForm()
         },
     });

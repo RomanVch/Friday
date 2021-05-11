@@ -124,12 +124,12 @@ export const getCardsThunk = (_id: string) => {
         dispatch(LoadingCardsAC())
         cardsAPI.getCard(_id).then(res => {
             dispatch(GetCardsAC(res.data))
-            console.log(res)
+
             dispatch(CleanErrorLoadingCardsAC())
         })
             .catch(err => {
                 dispatch(CleanErrorLoadingCardsAC())
-                console.log(err)
+
             });
     };
 };
@@ -151,7 +151,7 @@ export const newCardThunk = (cardsPack_id: string,
         })
             .catch(err => {
                 dispatch(CleanErrorLoadingCardsAC())
-                console.log(err)
+
             });
     };
 };
@@ -163,7 +163,7 @@ export const deleteCardThunk = (_id: string, _idCards: string) => {
             dispatch(getCardsThunk(_id));
         }).catch((err: any) => {
             dispatch(CleanErrorLoadingCardsAC())
-            console.log(err)
+
         })
     }
 };
@@ -178,7 +178,7 @@ export const updateCardThunk = (_idCard: string, question: string = "Новый 
         })
             .catch(err => {
                 dispatch(CleanErrorLoadingCardsAC())
-                console.log(err)
+
             });
     };
 };

@@ -45,4 +45,10 @@ border-right:1px solid black
     margin-left: 2%;
     width:17%
 }
-
+.pacs__filter_wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

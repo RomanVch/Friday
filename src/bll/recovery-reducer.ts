@@ -41,10 +41,6 @@ export const recoveryPasTC = (email: string) => {
                 // if (res.data.resultCode === ResultCodeStatuses.Success) {
                 dispatch(recoveryPasAC(email))
                 dispatch(setStatusAC('succeeded'))
-                console.log(res.status)
-                console.log(res.data)
-                console.log(res.data.error)
-                console.log(res.data.info)
                 // }
             })
             .catch((err) => {
