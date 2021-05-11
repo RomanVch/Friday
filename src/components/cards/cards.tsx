@@ -17,7 +17,7 @@ export const Cards = () => {
     }, [])
     const _id = useSelector<AppStateType, string>(st => st.Cards._idPacs)
     const cards = useSelector<AppStateType, any>(st => st.Cards)
-    console.log(cards.loading)
+
     return (
         <div>
             {cards.loading && <LinearProgress/>}

@@ -40,8 +40,8 @@ export const cardsAPI = {
     logOut() {
         return instance.delete('auth/me')
     },
-    getPack(page: number = 1, pageCont: number = 4) {
-        return instance.get(`cards/pack?page=${page}&pageCount=${pageCont}`)
+    getPack(page: number = 1, pageCont: number = 4,search:string='') {
+        return instance.get(`cards/pack?page=${page}&pageCount=${pageCont}&packName=${search}`)
     },
     newPack(name: string, path: string) {
         return instance.post('cards/pack', {cardsPack: {name, path}})

@@ -16,7 +16,7 @@ import {AppStateType} from "../bll/store";
 
 export const Roters=()=> {
     const _id= useSelector<AppStateType,string>(st=>st.Cards._idPacs)
-    console.log(/Cards/+_id)
+
     return (
         <Switch>
             <Route exact path="/" render={() => <EnteringNewPassword/>}/>

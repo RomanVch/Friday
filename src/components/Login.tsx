@@ -72,7 +72,7 @@ export function Login() {
         validationSchema: validationSchema,
         onSubmit: (values, {resetForm}) => {
            dispatch(authThunk(values.login,values.password,values.rememberMe))
-            console.log(values.rememberMe)
+
             resetForm()
         },
     });
